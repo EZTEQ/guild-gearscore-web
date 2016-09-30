@@ -1,0 +1,22 @@
+{
+  "name": "guild-gearscore-web",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "https://git.markhaehnel.de/mhaehnel/guild-gearscore-web.git"
+  },
+  "author": "Mark Hähnel",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-useref": "^3.1.2",
+    "jquery": "^3.1.1",
+    "semantic-ui-css": "^2.2.4",
+    "vue": "^1.0.28",
+    "vue-resource": "^1.0.3",
+    "vue-router": "^0.7.13"
+  }
+}
