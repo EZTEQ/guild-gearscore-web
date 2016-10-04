@@ -1,6 +1,6 @@
 global.jQuery = require('jquery');
 
-var Vue = require('../../node_modules/vue/dist/vue.min.js');
+global.Vue = require('../../node_modules/vue/dist/vue.js');
 var VueRouter = require('vue-router');
 var VueResource = require('vue-resource');
 

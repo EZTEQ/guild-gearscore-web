@@ -1,9 +1,15 @@
 module.exports = {
     props: ['realm', 'name'],
 
-    data: {
-        member: null,
-        isLoading: true
+    data: function() {
+        return {
+            member: {
+                items: {
+                    averageItemLevelEquiped: null
+                }
+            },
+            isLoading: true
+        }
     },
 
     mounted: function() {
@@ -14,13 +20,12 @@ module.exports = {
 
     methods: {
         getGearScore: function(realm, name) {
-            console.log('isLoading: true');
-            this.$set('isLoading', true);
-            this.$http.get('/api/character/' + this.realm + '/' + this.name + '/items')
+            Vue.set(this, 'isLoading', true);
+            this.$http.get('http://localhost/api/character/' + this.realm + '/' + this.name + '/items')
                 .then(function(response) {
-                    this.$set('member', response.data);
-                    console.log('isLoading: false');
-                    this.$set('isLoading', false);
+                    Vue.set(this, 'member', response.data);
+                    Vue.set(this, 'isLoading', false);
+                    this.$root.$emit('add-item-level', response.data.items.averageItemLevelEquipped);
                 });
         }
     },
