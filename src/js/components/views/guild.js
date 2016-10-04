@@ -1,4 +1,4 @@
-Vue.component('view-guild', {
+var GuildView = Vue.component('view-guild', {
     
     props: ['realm', 'name'],
 
@@ -13,7 +13,7 @@ Vue.component('view-guild', {
 
     methods: {
         getGuild: function(realm, name) {
-            this.$http.get('http://localhost/guild/' + this.realm + '/' + this.name + '/members')
+            this.$http.get('http://localhost/guild/' + this.$route.params.realm + '/' + this.$route.params.guild + '/members')
                 .then(function(response) {
                     var filteredMembers = response.data.members
                         .filter(function(member) {
@@ -31,7 +31,11 @@ Vue.component('view-guild', {
     },
 
     template:
-        '<h1 v-text="guild.name"></h1>' +
-        '<p v-text="guild.realm"></p>' +
-        '<guild-member v-for="member in members" :realm="member.character.realm" :name="member.character.name"></guild-member>'
+        '<div class="ui tall stacked segment">' +
+            '<h1 class="header" v-text="guild.name"></h1>' +
+            '<span class="description" v-text="guild.realm"></p>' +
+        '</div>' +            
+        '<div class="ui segments">' +
+            '<guild-member v-for="member in members" :realm="member.character.realm" :name="member.character.name"></guild-member>' +
+        '</div>'
 });

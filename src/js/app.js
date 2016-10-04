@@ -1,4 +1,13 @@
+var App = Vue.extend({});
 
-var myVue = new Vue({
-    el: '#app'
-});
+var router = new VueRouter();
+router.map({
+    '/': {
+        component: HomeView
+    },
+    '/guild/:realm/:guild': {
+        component: GuildView
+    }
+})
+
+router.start(App, '#app');

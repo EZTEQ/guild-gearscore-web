@@ -1,6 +1,7 @@
 const gulp = require('gulp');
 const connect = require('gulp-connect');
 const useref = require('gulp-useref');
+const rimraf = require('rimraf');
 
 gulp.task('concat', () => {
     return gulp.src('src/*.html')
@@ -17,8 +18,12 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('watch', () => {
-    gulp.watch('src/**', ['concat']);
+    gulp.watch('src/**', ['default']);
 });
 
+gulp.task('clean', (cb) => {
+    rimraf('./dist/*', cb);
+})
+
 gulp.task('serve', ['concat', 'webserver', 'watch']);
-gulp.task('default', ['concat']);
+gulp.task('default', ['clean', 'concat']);

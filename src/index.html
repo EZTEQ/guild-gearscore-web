@@ -2,14 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Guild GearScore</title>
     <!-- build:css css/app.css -->
     <link rel="stylesheet" href="../node_modules/semantic-ui-css/semantic.min.css" integrity="sha256-BQwSEeLxuDggfePeFdo3V906rcvcJpkSAYr/Lqc2oSo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/app.css" />
     <!-- endbuild -->
 </head>
 <body>
     <div id="app">
-        <view-guild realm="Mal'Ganis" name="Aeonic"></view-guild>
+        <div class="ui container">
+            <div class="ui large secondary pointing menu">
+                <span class="active item">Guild GearScore</span>
+                <a class="item" v-link="{ path: '/' }">Go to Foo</a>
+                <a class="item" v-link="{ path: '/Guild' }">Go to Bar</a>
+                <!--<div class="right menu">
+                    <a class="item">Return to start</a>
+                </div>-->
+            </div>
+        </div>
+
+        <div class="ui container">
+            <router-view></router-view>
+        </div>
+
     </div>
 
     <!-- build:js js/app.js -->
