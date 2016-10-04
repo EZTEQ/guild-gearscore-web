@@ -12,13 +12,15 @@
   "dependencies": {
     "browserify": "^13.1.0",
     "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
     "gulp-connect": "^5.0.0",
-    "gulp-useref": "^3.1.2",
     "jquery": "^3.1.1",
     "rimraf": "^2.5.4",
     "semantic-ui-css": "^2.2.4",
-    "vue": "^1.0.28",
+    "stringify": "^5.1.0",
+    "vinyl-source-stream": "^1.1.0",
+    "vue": "^2.0.1",
     "vue-resource": "^1.0.3",
-    "vue-router": "^0.7.13"
+    "vue-router": "^2.0.0"
   }
 }

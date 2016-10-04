@@ -1,29 +1,54 @@
 const gulp = require('gulp');
 const connect = require('gulp-connect');
-const useref = require('gulp-useref');
+const concat = require('gulp-concat');
+const browserify = require('browserify');
+const stringify = require('stringify');
+const source = require('vinyl-source-stream');
 const rimraf = require('rimraf');
 
-gulp.task('concat', () => {
-    return gulp.src('src/*.html')
-        .pipe(useref())
-        .pipe(gulp.dest('dist'))
-        .pipe(connect.reload());
-});
-
-gulp.task('webserver', function() {
-    connect.server({
-        root: 'dist',
-        livereload: true
-    });
-});
-
-gulp.task('watch', () => {
-    gulp.watch('src/**', ['default']);
-});
+const srcDir = './src';
+const distDir = './dist';
 
 gulp.task('clean', (cb) => {
-    rimraf('./dist/*', cb);
-})
+    rimraf(distDir + '/*', cb);
+});
 
-gulp.task('serve', ['concat', 'webserver', 'watch']);
-gulp.task('default', ['clean', 'concat']);
+gulp.task('browserify', ['clean'], () => {
+    return browserify({
+            entries: srcDir + '/js/app.js'
+        })
+        .transform(stringify, {
+            appliesTo: { includeExtensions: ['.html'] }
+        })
+        .bundle()
+        .pipe(source('app.js'))
+        .pipe(gulp.dest(distDir + '/js/'));
+});
+
+gulp.task('bundle-js', ['clean'], function() {
+    return gulp.src('node_modules/semantic-ui-css/semantic.min.js')
+        .pipe(concat('bundle.js'))
+        .pipe(gulp.dest(distDir + '/js'));
+});
+
+gulp.task('bundle-css', ['clean'], function() {
+    return gulp.src([
+            srcDir + '/css/**/*.css',
+            'node_modules/semantic-ui-css/semantic.min.css'
+        ])
+        .pipe(concat('bundle.css'))
+        .pipe(gulp.dest(distDir + '/css'));
+});
+
+gulp.task('copy-index-html', ['clean'], () => {
+    gulp.src(srcDir + '/index.html')
+        .pipe(gulp.dest(distDir));
+});
+
+gulp.task('copy-css', () => {
+    gulp.src(srcDir + '/css/**/*.css')
+        .pipe(gulp.dest(distDir + '/css'));
+});
+
+gulp.task('build', ['clean', 'copy-index-html', 'bundle-css', 'bundle-js', 'browserify'])
+gulp.task('default', ['build']);

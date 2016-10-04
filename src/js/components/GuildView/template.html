@@ -1,0 +1,9 @@
+<div class="ui container">
+    <div class="ui tall stacked segment">
+        <h1 class="header" v-text="guild.name"></h1>
+        <span class="description" v-text="guild.realm"></p>
+    </div>
+    <div class="ui segments">
+        <guild-member v-for="member in members" :realm="member.character.realm" :name="member.character.name"></guild-member>
+    </div>
+</div>

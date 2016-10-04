@@ -1,13 +1,26 @@
-var App = Vue.extend({});
+global.jQuery = require('jquery');
 
-var router = new VueRouter();
-router.map({
-    '/': {
-        component: HomeView
+var Vue = require('../../node_modules/vue/dist/vue.min.js');
+var VueRouter = require('vue-router');
+var VueResource = require('vue-resource');
+
+Vue.use(VueRouter);
+Vue.use(VueResource);
+
+var routes = [
+    { 
+        path: '/',
+        component: require('./components/HomeView')
     },
-    '/guild/:realm/:guild': {
-        component: GuildView
+    { 
+        path: '/guild/:realm/:guild',
+        component: require('./components/GuildView')
     }
-})
+];
+var router = new VueRouter({
+    routes
+});
 
-router.start(App, '#app');
+var app = new Vue({
+    router
+}).$mount('#app');
