@@ -21,7 +21,7 @@ module.exports = {
     methods: {
         getGearScore: function(realm, name) {
             Vue.set(this, 'isLoading', true);
-            this.$http.get('http://localhost/api/character/' + this.realm + '/' + this.name + '/items')
+            this.$http.get('/api/character/' + this.realm + '/' + this.name + '/items')
                 .then(function(response) {
                     Vue.set(this, 'member', response.data);
                     Vue.set(this, 'isLoading', false);

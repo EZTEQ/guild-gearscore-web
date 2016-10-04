@@ -1,1 +1,18 @@
-<h1>HELLO WORLD</h1>
+<div class="ui container">
+    <h1>Guild GearScore</h1>
+    <div class="ui container">
+        <form class="ui form">
+            <div class="fields">
+                <div class="eight wide field">
+                    <label>Realm</label>
+                    <input v-model="realm" type="text" placeholder="Mal'Ganis">
+                </div>
+                <div class="eight wide field">
+                    <label>Guild</label>
+                    <input v-model="guild" type="text" placeholder="Aeonic">
+                </div>
+            </div>
+            <a :href="urlToGo" class="ui button">Go!</a>
+        </form>
+    </div>
+</div>

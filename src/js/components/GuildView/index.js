@@ -37,7 +37,7 @@ module.exports = {
 
     methods: {
         getGuild: function(realm, name) {
-            this.$http.get('http://localhost/api/guild/' + this.$route.params.realm + '/' + this.$route.params.guild + '/members')
+            this.$http.get('/api/guild/' + this.$route.params.realm + '/' + this.$route.params.guild + '/members')
                 .then(function(response) {
                     var filteredMembers = response.data.members
                         .filter(function(member) {
