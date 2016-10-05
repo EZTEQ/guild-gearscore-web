@@ -11,15 +11,13 @@
         <div class="ui container">
             <div class="ui large secondary pointing menu">
                 <span class="active item">Guild GearScore</span>
-                <router-link class="item" to="/">Home</router-link>
-                <!--<div class="right menu">
-                    <a class="item">Return to start</a>
-                </div>-->
+                <div class="right menu">
+                    <router-link class="item" to="/" v-if="this.$route.path != '/'">Go back to start</router-link>
+                </div>
             </div>
         </div>
 
         <router-view></router-view>
-
     </div>
 
     <script src="js/app.js"></script>    

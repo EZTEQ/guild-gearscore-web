@@ -9,6 +9,18 @@ const rimraf = require('rimraf');
 const srcDir = './src';
 const distDir = './dist';
 
+gulp.task('connect', () => {
+    connect.server({
+        root: distDir,
+        port: 3000,
+        livereload: true
+    });
+});
+
+gulp.task('watch', () => {
+    gulp.watch([srcDir + '/**/*.*'], ['build']);
+});
+
 gulp.task('clean', (cb) => {
     rimraf(distDir + '/*', cb);
 });
@@ -50,5 +62,9 @@ gulp.task('copy-css', () => {
         .pipe(gulp.dest(distDir + '/css'));
 });
 
-gulp.task('build', ['clean', 'copy-index-html', 'bundle-css', 'bundle-js', 'browserify'])
+gulp.task('build', ['clean', 'copy-index-html', 'bundle-css', 'bundle-js', 'browserify'], () => {
+    connect.reload();
+})
+
+gulp.task('serve', ['connect', 'watch']);
 gulp.task('default', ['build']);

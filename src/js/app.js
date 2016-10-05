@@ -15,6 +15,10 @@ var routes = [
     { 
         path: '/guild/:realm/:guild',
         component: require('./components/GuildView')
+    },
+    { 
+        path: '/guild/not-found',
+        component: require('./components/GuildNotFoundView')
     }
 ];
 var router = new VueRouter({
