@@ -53,14 +53,10 @@ module.exports = {
                     var filteredMembers = response.data.members
                         .filter(function(member) {
                             if (member.character.level === 110) return true;
-                        })
-                        .sort(function(a, b) {
-                            if(a.rank < b.rank) return -1;
-                            if(a.rank > b.rank) return 1;
-                            if(a.rank == b.rank) return 0;
                         });
                     Vue.set(this, 'guild', response.data);
                     Vue.set(this, 'members', filteredMembers);
+                    this.sortBy('guildrank');
                 })
                 .catch(function() {
                     this.$router.push('/guild/not-found');
@@ -69,6 +65,25 @@ module.exports = {
 
         addItemLevel: function(itemLevel) {
             this.itemLevels.push(itemLevel);
+        },
+
+        sortBy: function(param, $event) {
+            switch(param) {
+                case 'guildrank':
+                    this.members.sort(function(a, b) {
+                        if (a.rank < b.rank) return -1;
+                        if (a.rank > b.rank) return 1;
+                        return 0;
+                    });
+                    break;
+                case 'name':
+                    this.members.sort(function(a, b) {
+                        if (a.character.name < b.character.name) return -1;
+                        if (a.character.name > b.character.name) return 1;
+                        return 0;
+                    });
+                    break;
+            }
         }
     },
 

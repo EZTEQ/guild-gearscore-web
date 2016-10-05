@@ -1,25 +1,42 @@
 <div class="ui container">
-    <div class="ui tall segment">
-        <div class="ui active inverted dimmer" v-if="!finished">
-            <div class="ui active inverted loader"></div>
-        </div>
-        <div class="ui two center aligned statistics">
-            <div class="statistic">
-                <div class="value" v-text="guild.name"></div>
-                <div class="label" v-text="guild.realm"></div>
-            </div>
-            <div class="statistic">
-                <div class="value" v-text="averageItemLevel"></div>
-                <div class="label">Average Item Level</div>
-            </div>
-        </div>
-
-        <div class="ui bottom attached orange progress" v-if="!finished">
-            <div class="bar" :style="{ width: progress + '%' }"></div>
-        </div>
-
-    </div>
     <div class="ui segments">
-        <guild-member v-for="member in members" :realm="member.character.realm" :name="member.character.name"></guild-member>
+        <div class="ui segment">
+            <p>Overview</p>
+        </div>
+        <div class="ui secondary segment">
+            <div class="ui active inverted dimmer" v-if="!finished">
+                <div class="ui active inverted loader"></div>
+            </div>
+            <div class="ui two center aligned statistics">
+                <div class="statistic">
+                    <div class="value" v-text="guild.name"></div>
+                    <div class="label" v-text="guild.realm"></div>
+                </div>
+                <div class="statistic">
+                    <div class="value" v-text="averageItemLevel"></div>
+                    <div class="label">Average Item Level</div>
+                </div>
+            </div>
+
+            <div class="ui bottom attached orange progress" v-if="!finished">
+                <div class="bar" :style="{ width: progress + '%' }"></div>
+            </div>
+        </div>
+    </div>
+    <div class="ui mobile reversed  stackable two column centered grid">
+        <div class="twelve wide column">
+            <div class="ui segment">
+                <div class="ui large middle aligned divided list">
+                    <guild-member v-for="member in members" :realm="member.character.realm" :name="member.character.name"></guild-member>
+                </div>
+            </div>
+        </div>
+        <div class="four wide column">
+            <div class="ui vertical text menu">
+                <div class="header item">Sort By</div>
+                <a class="item" v-on:click="sortBy('guildrank', $event)">Guild Rank</a>
+                <a class="item" v-on:click="sortBy('name', $event)">Name</a>
+            </div>
+        </div>
     </div>
 </div>

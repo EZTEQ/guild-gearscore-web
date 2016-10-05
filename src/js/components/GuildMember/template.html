@@ -1,3 +1,7 @@
-<div class="ui segment" v-bind:class="{ hidden: isLoading }">
-    <div class="ui mini horizontal statistic"><div class="value">{{member.items.averageItemLevelEquipped}}</div><div class="label">{{name}}<br>Test</div></div>
+<div class="item" v-bind:class="{ hidden: isLoading }">
+    <img class="ui avatar image" :src="avatar">
+    <div class="content">
+        <span class="header">{{name}}</span>
+        {{member.items.averageItemLevelEquipped}}
+    </div>
 </div>

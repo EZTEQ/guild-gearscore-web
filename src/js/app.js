@@ -19,6 +19,10 @@ var routes = [
     { 
         path: '/guild/not-found',
         component: require('./components/GuildNotFoundView')
+    },
+    {
+        path: '*',
+        redirect: '/'
     }
 ];
 var router = new VueRouter({

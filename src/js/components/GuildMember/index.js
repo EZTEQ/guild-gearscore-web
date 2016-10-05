@@ -8,7 +8,8 @@ module.exports = {
                     averageItemLevelEquiped: null
                 }
             },
-            isLoading: true
+            isLoading: true,
+            avatar: ''
         }
     },
 
@@ -25,6 +26,7 @@ module.exports = {
                 .then(function(response) {
                     Vue.set(this, 'member', response.data);
                     Vue.set(this, 'isLoading', false);
+                    Vue.set(this, 'avatar', '//render-api-eu.worldofwarcraft.com/static-render/eu/' + response.data.thumbnail);
                     this.$root.$emit('add-item-level', response.data.items.averageItemLevelEquipped);
                 });
         }

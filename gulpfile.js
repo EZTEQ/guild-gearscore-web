@@ -12,7 +12,7 @@ const distDir = './dist';
 gulp.task('connect', () => {
     connect.server({
         root: distDir,
-        port: 3000,
+        port: 8080,
         livereload: true
     });
 });
@@ -25,7 +25,7 @@ gulp.task('clean', (cb) => {
     rimraf(distDir + '/*', cb);
 });
 
-gulp.task('browserify', ['clean'], () => {
+gulp.task('browserify', () => {
     return browserify({
             entries: srcDir + '/js/app.js'
         })
@@ -34,37 +34,40 @@ gulp.task('browserify', ['clean'], () => {
         })
         .bundle()
         .pipe(source('app.js'))
-        .pipe(gulp.dest(distDir + '/js/'));
+        .pipe(gulp.dest(distDir + '/js/'))
+        .pipe(connect.reload());
 });
 
-gulp.task('bundle-js', ['clean'], function() {
+gulp.task('bundle-js', function() {
     return gulp.src('node_modules/semantic-ui-css/semantic.min.js')
         .pipe(concat('bundle.js'))
-        .pipe(gulp.dest(distDir + '/js'));
+        .pipe(gulp.dest(distDir + '/js'))
+        .pipe(connect.reload());
 });
 
-gulp.task('bundle-css', ['clean'], function() {
+gulp.task('bundle-css', function() {
     return gulp.src([
             srcDir + '/css/**/*.css',
             'node_modules/semantic-ui-css/semantic.min.css'
         ])
         .pipe(concat('bundle.css'))
-        .pipe(gulp.dest(distDir + '/css'));
+        .pipe(gulp.dest(distDir + '/css'))
+        .pipe(connect.reload());
 });
 
-gulp.task('copy-index-html', ['clean'], () => {
+gulp.task('copy-index-html', () => {
     gulp.src(srcDir + '/index.html')
-        .pipe(gulp.dest(distDir));
+        .pipe(gulp.dest(distDir))
+        .pipe(connect.reload());
 });
 
 gulp.task('copy-css', () => {
     gulp.src(srcDir + '/css/**/*.css')
-        .pipe(gulp.dest(distDir + '/css'));
+        .pipe(gulp.dest(distDir + '/css'))
+        .pipe(connect.reload());
 });
 
-gulp.task('build', ['clean', 'copy-index-html', 'bundle-css', 'bundle-js', 'browserify'], () => {
-    connect.reload();
-})
+gulp.task('build', ['copy-index-html', 'bundle-css', 'bundle-js', 'browserify']);
 
-gulp.task('serve', ['connect', 'watch']);
+gulp.task('serve', ['build', 'connect', 'watch']);
 gulp.task('default', ['build']);
