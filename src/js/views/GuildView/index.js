@@ -90,6 +90,6 @@ module.exports = {
     template: require('./template.html'),
 
     components: {
-        'guild-member': require('../GuildMember')
+        'guild-member': require('../../components/GuildMember')
     }
 };

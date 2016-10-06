@@ -8,23 +8,12 @@ Vue.use(VueRouter);
 Vue.use(VueResource);
 
 var routes = [
-    { 
-        path: '/',
-        component: require('./components/HomeView')
-    },
-    { 
-        path: '/guild/:realm/:guild',
-        component: require('./components/GuildView')
-    },
-    { 
-        path: '/guild/not-found',
-        component: require('./components/GuildNotFoundView')
-    },
-    {
-        path: '*',
-        redirect: '/'
-    }
+    { path: '/', component: require('./views/HomeView') },
+    { path: '/guild/:realm/:guild', component: require('./views/GuildView') },
+    { path: '/guild/not-found', component: require('./views/GuildNotFoundView') },
+    { path: '*', redirect: '/' }
 ];
+
 var router = new VueRouter({
     routes
 });
