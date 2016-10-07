@@ -25,23 +25,17 @@ gulp.task('clean', (cb) => {
     rimraf(distDir + '/*', cb);
 });
 
-gulp.task('browserify', () => {
+gulp.task('bundle-js', () => {
     return browserify({
             entries: srcDir + '/js/app.js'
         })
+        .add('node_modules/semantic-ui-css/semantic.min.js')
         .transform(stringify, {
             appliesTo: { includeExtensions: ['.html'] }
         })
         .bundle()
         .pipe(source('app.js'))
         .pipe(gulp.dest(distDir + '/js/'))
-        .pipe(connect.reload());
-});
-
-gulp.task('bundle-js', function() {
-    return gulp.src('node_modules/semantic-ui-css/semantic.min.js')
-        .pipe(concat('bundle.js'))
-        .pipe(gulp.dest(distDir + '/js'))
         .pipe(connect.reload());
 });
 
@@ -61,13 +55,7 @@ gulp.task('copy-index-html', () => {
         .pipe(connect.reload());
 });
 
-gulp.task('copy-css', () => {
-    gulp.src(srcDir + '/css/**/*.css')
-        .pipe(gulp.dest(distDir + '/css'))
-        .pipe(connect.reload());
-});
-
-gulp.task('build', ['copy-index-html', 'bundle-css', 'bundle-js', 'browserify']);
-
+gulp.task('bundle', ['bundle-css', 'bundle-js']);
+gulp.task('build', ['copy-index-html', 'bundle']);
 gulp.task('serve', ['build', 'connect', 'watch']);
 gulp.task('default', ['build']);
