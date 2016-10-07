@@ -34,7 +34,7 @@ gulp.task('bundle-js', () => {
             appliesTo: { includeExtensions: ['.html'] }
         })
         .bundle()
-        .pipe(source('app.js'))
+        .pipe(source('bundle.js'))
         .pipe(gulp.dest(distDir + '/js/'))
         .pipe(connect.reload());
 });
