@@ -1,3 +1,5 @@
+var Vue = require('vue/dist/vue.js');
+
 module.exports = {
     
     data: function() {
