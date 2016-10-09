@@ -6,7 +6,9 @@ var VueResource = require('vue-resource');
 Vue.use(VueResource);
 
 var router = require('./router');
+var store = require('./store');
 
 var app = new Vue({
-    router
+    router,
+    store
 }).$mount('#app');
