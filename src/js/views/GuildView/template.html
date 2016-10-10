@@ -4,9 +4,9 @@
             <p>Overview</p>
         </div>
         <div class="ui secondary segment">
-            <div class="ui active inverted dimmer" v-if="!finished">
+            <!--<div class="ui active inverted dimmer" v-if="!finished">
                 <div class="ui active inverted loader"></div>
-            </div>
+            </div>-->
             <div class="ui two center aligned statistics">
                 <div class="statistic">
                     <div class="value" v-text="guild.name"></div>
@@ -18,24 +18,26 @@
                 </div>
             </div>
 
-            <div class="ui bottom attached orange progress" v-if="!finished">
+            <!--<div class="ui bottom attached orange progress" v-if="!finished">
                 <div class="bar" :style="{ width: progress + '%' }"></div>
-            </div>
+            </div>-->
         </div>
     </div>
     <div class="ui mobile reversed  stackable two column centered grid">
         <div class="twelve wide column">
             <div class="ui segment">
                 <div class="ui large middle aligned divided list">
-                    <guild-member v-for="member in members" :realm="member.character.realm" :name="member.character.name"></guild-member>
+                    <guild-member v-for="member in members" :name="member.name" :realm="member.realm">
+                    </guild-member>
                 </div>
             </div>
         </div>
         <div class="four wide column">
             <div class="ui vertical text menu">
                 <div class="header item">Sort By</div>
-                <a class="item" v-on:click="sortBy('guildrank', $event)">Guild Rank</a>
-                <a class="item" v-on:click="sortBy('name', $event)">Name</a>
+                <a class="item" v-on:click="sort('rank', $event)">Guild Rank</a>
+                <a class="item" v-on:click="sort('name', $event)">Name</a>
+                <a class="item" v-on:click="sort('averageItemLevelEquipped', $event)">Item Level</a>
             </div>
         </div>
     </div>

@@ -3,35 +3,16 @@ var Vue = require('vue/dist/vue.js');
 module.exports = {
     props: ['realm', 'name'],
 
-    data: function() {
-        return {
-            member: {
-                items: {
-                    averageItemLevelEquiped: null
-                }
-            },
-            isLoading: true,
-            avatar: ''
+    computed: {
+        averageItemLevelEquipped: function() {
+            return this.$store.state.guild.members.filter(function(x) {
+                return (x.name === this.name)
+            }, this)[0].averageItemLevelEquipped;
         }
     },
 
     mounted: function() {
-        this.$nextTick(function() {
-            this.getGearScore(this.realm, this.name);
-        });
-    },
-
-    methods: {
-        getGearScore: function(realm, name) {
-            Vue.set(this, 'isLoading', true);
-            this.$http.get('/api/character/' + this.realm + '/' + this.name + '/items')
-                .then(function(response) {
-                    Vue.set(this, 'member', response.data);
-                    Vue.set(this, 'isLoading', false);
-                    Vue.set(this, 'avatar', '//render-api-eu.worldofwarcraft.com/static-render/eu/' + response.data.thumbnail);
-                    this.$root.$emit('add-item-level', response.data.items.averageItemLevelEquipped);
-                });
-        }
+        this.$store.dispatch('updateMember', { realm: this.realm, name: this.name })
     },
 
     template: require('./template.html')
