@@ -1,12 +1,22 @@
 var Vue = require('vue/dist/vue.js');
 
-function sortByProperty(members, prop, reverse) {
-    var sortedMembers = members.sort(function(a, b) { return(a[prop] < b[prop]) ? -1 : (a[prop] > b[prop]) ? 1 : 0 });
+function sortByProperty(members, prop, secondprop, reverse) {
+    var sortedMembers = members.sort(function(a, b) { 
+        if (a[prop] < b[prop]) {
+            return -1
+        } else if (a[prop] > b[prop]) {
+            return 1
+        } else {
+            //Equal - use second prop
+            return (a[secondprop] < b[secondprop] ? -1 : 1);
+        }
+    });
     return (reverse) ? sortedMembers.reverse() : sortedMembers;
 }
 
 var data = {
     sortBy: 'rank',
+    sortBySecond: 'name',
     sortReverse: false
 }
 
@@ -32,7 +42,7 @@ module.exports = {
 
         members: function() {
             var guildMembers = this.guild.members;
-            return sortByProperty(guildMembers, this.sortBy, this.sortReverse);
+            return sortByProperty(guildMembers, this.sortBy, this.sortBySecond, this.sortReverse);
         }
     },
 
@@ -46,12 +56,13 @@ module.exports = {
             this.itemLevels.push(itemLevel);
         },
 
-        sort: function(param, $event) {
-            if (this.sortBy === param) {
+        sort: function(prop, secondprop, $event) {
+            if (this.sortBy === prop && this.sortBySecond === secondprop) {
                 this.sortReverse = !this.sortReverse;
             } else {
+                this.sortBy = prop;
+                this.sortBySecond = secondprop;
                 this.sortReverse = false;
-                this.sortBy = param;
             }
         }
     },
