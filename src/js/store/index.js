@@ -39,7 +39,6 @@ module.exports = new Vuex.Store({
                 }
             }
         }
-
     },
 
     actions: {

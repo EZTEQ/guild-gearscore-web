@@ -17,7 +17,8 @@ function sortByProperty(members, prop, secondprop, reverse) {
 var data = {
     sortBy: 'rank',
     sortBySecond: 'name',
-    sortReverse: false
+    sortReverse: false,
+    filterName: ''
 }
 
 module.exports = {
@@ -42,7 +43,10 @@ module.exports = {
 
         members: function() {
             var guildMembers = this.guild.members;
-            return sortByProperty(guildMembers, this.sortBy, this.sortBySecond, this.sortReverse);
+            return sortByProperty(guildMembers, this.sortBy, this.sortBySecond, this.sortReverse)
+                .filter(function(x) {
+                    return (x.name.indexOf(this.filterName) !== -1)
+                }, this);
         }
     },
 

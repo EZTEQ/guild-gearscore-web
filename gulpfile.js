@@ -51,11 +51,15 @@ gulp.task('bundle-css', function() {
 
 gulp.task('copy-index-html', () => {
     gulp.src(srcDir + '/index.html')
-        .pipe(gulp.dest(distDir))
-        .pipe(connect.reload());
+        .pipe(gulp.dest(distDir));
+});
+
+gulp.task('copy-assets', () => {
+    gulp.src('node_modules/semantic-ui-css/themes/**/*')
+        .pipe(gulp.dest(distDir + '/css/themes'));
 });
 
 gulp.task('bundle', ['bundle-css', 'bundle-js']);
-gulp.task('build', ['copy-index-html', 'bundle']);
+gulp.task('build', ['copy-index-html', 'copy-assets', 'bundle']);
 gulp.task('serve', ['build', 'connect', 'watch']);
 gulp.task('default', ['build']);

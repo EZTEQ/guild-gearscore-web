@@ -33,11 +33,30 @@
             </div>
         </div>
         <div class="four wide column">
+            <h4 class="ui horizontal divider header"><i class="sort alphabet ascending icon"></i>Order By</h4>
             <div class="ui fluid vertical menu">
-                <div class="header item">Sort By</div>
-                <a class="item" :class="{ active: sortBy == 'rank' }" v-on:click="sort('rank', 'name', $event)">Guild Rank</a>
-                <a class="item" :class="{ active: sortBy == 'name' }" v-on:click="sort('name', 'rank', $event)">Name</a>
-                <a class="item" :class="{ active: sortBy == 'averageItemLevelEquipped' }" v-on:click="sort('averageItemLevelEquipped', 'name', $event)">Item Level</a>
+                <a class="item" :class="{ active: sortBy == 'rank' }" v-on:click="sort('rank', 'name', $event)">
+                    Guild Rank
+                    <i class="dropdown icon" :class="{ 'vertically flipped': !sortReverse }" v-if="sortBy == 'rank'"></i>
+                </a>
+                <a class="item" :class="{ active: sortBy == 'name' }" v-on:click="sort('name', 'rank', $event)">
+                    Name
+                    <i class="dropdown icon" :class="{ 'vertically flipped': !sortReverse }" v-if="sortBy == 'name'"></i>
+                </a>
+                <a class="item" :class="{ active: sortBy == 'averageItemLevelEquipped' }" v-on:click="sort('averageItemLevelEquipped', 'name', $event)">
+                    Item Level
+                    <i class="dropdown icon" :class="{ 'vertically flipped': !sortReverse }" v-if="sortBy == 'averageItemLevelEquipped'"></i>
+                </a>
+            </div>
+
+            <h4 class="ui horizontal divider header"><i class="filter icon"></i>Filter</h4>
+            <div class="ui segment">
+                <form class="ui form">
+                    <div class="field">
+                        <label>Name</label>
+                        <input type="text" placeholder="Aeshwyn" v-model="filterName">
+                    </div>
+                </form>
             </div>
         </div>
     </div>

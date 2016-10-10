@@ -5,11 +5,3 @@
 #navigation {
   margin-bottom: 12px;
 }
-
-/* TRANSITIONS */
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
-}
-.fade-enter, .fade-leave-active {
-  opacity: 0
-}
