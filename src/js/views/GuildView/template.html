@@ -33,11 +33,11 @@
             </div>
         </div>
         <div class="four wide column">
-            <div class="ui vertical text menu">
+            <div class="ui fluid vertical menu">
                 <div class="header item">Sort By</div>
-                <a class="item" v-on:click="sort('rank', $event)">Guild Rank</a>
-                <a class="item" v-on:click="sort('name', $event)">Name</a>
-                <a class="item" v-on:click="sort('averageItemLevelEquipped', $event)">Item Level</a>
+                <a class="item" :class="{ active: sortBy == 'rank' }" v-on:click="sort('rank', $event)">Guild Rank</a>
+                <a class="item" :class="{ active: sortBy == 'name' }" v-on:click="sort('name', $event)">Name</a>
+                <a class="item" :class="{ active: sortBy == 'averageItemLevelEquipped' }" v-on:click="sort('averageItemLevelEquipped', $event)">Item Level</a>
             </div>
         </div>
     </div>
