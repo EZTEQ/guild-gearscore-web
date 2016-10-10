@@ -1,6 +1,6 @@
 var Vue = require('vue/dist/vue.js');
 
-var endpoint = 'http://localhost:3000';
+var endpoint = '/api';
 
 module.exports = {
     getGuild: function(realm, name, callback) {
