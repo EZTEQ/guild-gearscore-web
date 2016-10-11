@@ -65,7 +65,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
 import GuildMember from '../components/GuildMember';
 
 function sortByProperty(members, prop, secondprop, reverse) {
@@ -128,7 +127,7 @@ export default {
             this.itemLevels.push(itemLevel);
         },
 
-        sort: function(prop, secondprop, $event) {
+        sort: function(prop, secondprop) {
             if (this.sortBy === prop && this.sortBySecond === secondprop) {
                 this.sortReverse = !this.sortReverse;
             } else {
