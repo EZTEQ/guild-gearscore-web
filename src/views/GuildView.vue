@@ -129,11 +129,11 @@ export default {
         this.$store.dispatch('updateGuild', { realm: this.$route.params.realm, name: this.$route.params.guild});
     },
 
-    watch: {
+    /*watch: {
         '$route': function(to, from) {
             //todo
         }
-    },
+    },*/
 
     methods: {
 
