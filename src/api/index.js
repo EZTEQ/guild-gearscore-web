@@ -1,8 +1,8 @@
-var Vue = require('vue/dist/vue.js');
+import Vue from 'vue';
 
 var endpoint = '/api';
 
-module.exports = {
+export default {
     getGuild: function(realm, name, callback) {
         Vue.http.get(endpoint + '/guild/' + realm + '/' + name + '/members')
                 .then(function(response) {

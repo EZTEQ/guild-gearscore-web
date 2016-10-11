@@ -1,11 +1,11 @@
-var Vue = require('vue/dist/vue.js');
-var Vuex = require('vuex');
+import Vue from 'vue';
+import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-var api = require('../api');
+import api from '../api';
 
-module.exports = new Vuex.Store({
+export default new Vuex.Store({
     state: {
         guild: {
             name: '',

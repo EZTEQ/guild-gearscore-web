@@ -1,0 +1,39 @@
+<template>
+    <div class="ui center aligned container">
+        <h1>Guild GearScore</h1>
+        <div class="ui centered grid">
+            <div class="eight wide column">
+                <form class="ui form">
+                    <div class="fields">
+                        <div class="eight wide field">
+                            <label>Realm</label>
+                            <input v-model="realm" type="text" placeholder="Mal'Ganis">
+                        </div>
+                        <div class="eight wide field">
+                            <label>Guild</label>
+                            <input v-model="guild" type="text" placeholder="Aeonic">
+                        </div>
+                    </div>
+                    <a :href="urlToGo" class="ui fluid button">Let's find out!</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    data: function() {
+        return {
+            realm: "",
+            guild: ""
+        }
+    },
+
+    computed: {
+        urlToGo: function() {
+            return '#/guild/' + this.realm + '/' + this.guild;
+        }
+    },
+};
+</script>

@@ -1,6 +1,17 @@
-var Vue = require('vue/dist/vue.js');
+<template>
+    <div class="item">
+        <img class="ui avatar image">
+        <div class="content">
+            <span class="header">{{name}}</span>
+            {{averageItemLevelEquipped}}
+        </div>
+    </div>
+</template>
 
-module.exports = {
+<script>
+import Vue from 'vue';
+
+export default {
     props: ['realm', 'name'],
 
     computed: {
@@ -13,7 +24,6 @@ module.exports = {
 
     mounted: function() {
         this.$store.dispatch('updateMember', { realm: this.realm, name: this.name })
-    },
-
-    template: require('./template.html')
+    }
 };
+</script>

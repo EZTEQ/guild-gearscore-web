@@ -1,0 +1,5 @@
+<template>
+    <div class="ui center aligned container">
+        <h1>The guild you are searching for was not found.</h1>
+    </div>
+</template>
