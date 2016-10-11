@@ -8,11 +8,10 @@ import store from './store';
 
 Vue.use(VueResource);
 
-
 /* eslint-disable no-new */
 new Vue({
-  router,
-  store,
-  el: '#app',
-  render: h => h(App),
+    router,
+    store,
+    el: '#app',
+    render: h => h(App),
 });

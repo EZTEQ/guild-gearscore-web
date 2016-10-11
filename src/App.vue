@@ -13,4 +13,12 @@
     </div>
 </template>
 
+<style>
+    .hidden {
+        display: none !important;
+    }
+    #navigation {
+        margin-bottom: 12px;
+    }
+</style>
 <style src="semantic-ui-css/semantic.min.css"></style>
