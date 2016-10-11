@@ -5,9 +5,6 @@
                 <p>Overview</p>
             </div>
             <div class="ui secondary segment">
-                <!--<div class="ui active inverted dimmer" v-if="!finished">
-                    <div class="ui active inverted loader"></div>
-                </div>-->
                 <div class="ui two center aligned statistics">
                     <div class="statistic">
                         <div class="value" v-text="guild.name"></div>
@@ -18,14 +15,11 @@
                         <div class="label">Average Item Level</div>
                     </div>
                 </div>
-
-                <!--<div class="ui bottom attached orange progress" v-if="!finished">
-                    <div class="bar" :style="{ width: progress + '%' }"></div>
-                </div>-->
             </div>
         </div>
         <div class="ui mobile reversed  stackable two column centered grid">
             <div class="twelve wide column">
+                <h4 class="ui horizontal divider header"><i class="users icon"></i>Members ({{members.length}})</h4>
                 <div class="ui segment">
                     <div class="ui large middle aligned divided list">
                         <guild-member v-for="member in members" :name="member.name" :realm="member.realm">
@@ -54,8 +48,15 @@
                 <div class="ui segment">
                     <form class="ui form">
                         <div class="field">
+                            <div class="ui checkbox">
+                                <input type="checkbox" v-model="filterMaxLevel">
+                                <label>Level 110 only</label>
+                            </div>
+                        </div>
+                        <div class="ui divider"></div>
+                        <div class="field">
                             <label>Name</label>
-                            <input type="text" placeholder="Aeshwyn" v-model="filterName">
+                            <input type="text" v-model="filterName">
                         </div>
                     </form>
                 </div>
@@ -85,7 +86,8 @@ var data = {
     sortBy: 'rank',
     sortBySecond: 'name',
     sortReverse: false,
-    filterName: ''
+    filterName: '',
+    filterMaxLevel: true
 }
 
 export default {
@@ -101,10 +103,10 @@ export default {
         
         averageItemLevel: function() {
             var avg = 0;
-            this.$store.state.guild.members.forEach(function(element) {
+            this.members.forEach(function(element) {
                 avg += element.averageItemLevelEquipped;
             });
-            avg = Math.round(avg / this.$store.state.guild.members.length);
+            avg = Math.round(avg / this.members.length);
             return (typeof avg === 'number' && !isNaN(avg)) ? avg : 0;
         },
 
@@ -112,7 +114,10 @@ export default {
             var guildMembers = this.guild.members;
             return sortByProperty(guildMembers, this.sortBy, this.sortBySecond, this.sortReverse)
                 .filter(function(x) {
-                    return (x.name.indexOf(this.filterName) !== -1)
+                    return (x.name.indexOf(this.filterName) !== -1);
+                }, this)
+                .filter(function(x) {
+                    return (!this.filterMaxLevel || (x.level === 110));
                 }, this);
         }
     },

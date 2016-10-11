@@ -26,6 +26,7 @@ export default new Vuex.Store({
                     name: element.character.name,
                     realm: element.character.realm,
                     rank: element.rank,
+                    level: element.character.level,
                     averageItemLevelEquipped: 0
                 });
             }, this);
@@ -49,9 +50,12 @@ export default new Vuex.Store({
         },
 
         updateMember: function(context, payload) {
-            api.getMember(payload.realm, payload.name, function(data) {
-                context.commit('updateMember', data);
-            });
+            var member = context.state.guild.members.filter(function(x) { return (x.name === payload.name) })[0];
+            if(member.averageItemLevelEquipped === 0) {
+                api.getMember(payload.realm, payload.name, function(data) {
+                        context.commit('updateMember', data);
+                });
+            }
         }
     }
 });
