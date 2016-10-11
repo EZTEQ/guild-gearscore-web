@@ -8,8 +8,9 @@
                 </div>
             </div>
         </div>
-
-        <router-view></router-view>
+        <transition name="fade" mode="out-in">
+            <router-view></router-view>
+        </transition>
     </div>
 </template>
 
@@ -19,6 +20,12 @@
     }
     #navigation {
         margin-bottom: 12px;
+    }
+    .fade-enter-active, .fade-leave-active {
+        transition: all .2s ease;
+    }
+    .fade-enter, .fade-leave-active {
+        opacity: 0;
     }
 </style>
 <style src="semantic-ui-css/semantic.min.css"></style>

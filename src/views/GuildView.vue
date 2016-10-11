@@ -1,5 +1,8 @@
 <template>
     <div class="ui container">
+        <div class="ui dimmer" :class="{ active: this.guild.name === ''}">
+            <div class="ui text loader">Loading</div>
+        </div>
         <div class="ui segments">
             <div class="ui segment">
                 <p>Overview</p>
@@ -114,7 +117,7 @@ export default {
             var guildMembers = this.guild.members;
             return sortByProperty(guildMembers, this.sortBy, this.sortBySecond, this.sortReverse)
                 .filter(function(x) {
-                    return (x.name.indexOf(this.filterName) !== -1);
+                    return (x.name.toLowerCase().indexOf(this.filterName.toLowerCase()) !== -1);
                 }, this)
                 .filter(function(x) {
                     return (!this.filterMaxLevel || (x.level === 110));
@@ -122,8 +125,14 @@ export default {
         }
     },
 
-    mounted: function() {
+    beforeMount: function() {
         this.$store.dispatch('updateGuild', { realm: this.$route.params.realm, name: this.$route.params.guild});
+    },
+
+    watch: {
+        '$route': function(to, from) {
+            //todo
+        }
     },
 
     methods: {
