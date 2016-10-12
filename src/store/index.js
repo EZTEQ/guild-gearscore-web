@@ -27,6 +27,7 @@ export default new Vuex.Store({
                     realm: element.character.realm,
                     rank: element.rank,
                     level: element.character.level,
+                    avatar: '//render-api-eu.worldofwarcraft.com/static-render/eu/' + element.character.thumbnail,
                     averageItemLevelEquipped: 0
                 });
             }, this);

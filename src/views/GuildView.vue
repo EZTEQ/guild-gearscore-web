@@ -25,7 +25,7 @@
                 <h4 class="ui horizontal divider header"><i class="users icon"></i>Members ({{members.length}})</h4>
                 <div class="ui segment">
                     <div class="ui large middle aligned divided list">
-                        <guild-member v-for="member in members" :name="member.name" :realm="member.realm">
+                        <guild-member v-for="member in members" :name="member.name">
                         </guild-member>
                     </div>
                 </div>
