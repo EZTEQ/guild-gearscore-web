@@ -51,15 +51,18 @@
                 <div class="ui segment">
                     <form class="ui form">
                         <div class="field">
+                            <label>Name</label>
+                            <input type="text" v-model="filterName">
+                        </div>
+                        <div class="field">
+                            <label>Rank (Smaller is higher)</label>
+                            <input type="number" min="0" v-model.number="filterRank">
+                        </div>
+                        <div class="field">
                             <div class="ui checkbox">
                                 <input type="checkbox" v-model="filterMaxLevel">
                                 <label>Level 110 only</label>
                             </div>
-                        </div>
-                        <div class="ui divider"></div>
-                        <div class="field">
-                            <label>Name</label>
-                            <input type="text" v-model="filterName">
                         </div>
                     </form>
                 </div>
@@ -90,7 +93,8 @@ var data = {
     sortBySecond: 'name',
     sortReverse: false,
     filterName: '',
-    filterMaxLevel: true
+    filterMaxLevel: true,
+    filterRank: 20
 }
 
 export default {
@@ -116,17 +120,20 @@ export default {
         members: function() {
             var guildMembers = this.guild.members;
             return sortByProperty(guildMembers, this.sortBy, this.sortBySecond, this.sortReverse)
-                .filter(function(x) {
+                .filter(function(x) { //name
                     return (x.name.toLowerCase().indexOf(this.filterName.toLowerCase()) !== -1);
                 }, this)
-                .filter(function(x) {
+                .filter(function(x) { //maxlevel
                     return (!this.filterMaxLevel || (x.level === 110));
+                }, this)
+                .filter(function(x) {
+                    return (x.rank <= this.filterRank);
                 }, this);
         }
     },
 
     beforeMount: function() {
-        this.$store.dispatch('updateGuild', { realm: this.$route.params.realm, name: this.$route.params.guild});
+        this.$store.dispatch('updateGuild', { realm: this.$route.params.realm, name: this.$route.params.guild });
     },
 
     /*watch: {
