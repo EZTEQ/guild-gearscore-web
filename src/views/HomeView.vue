@@ -14,7 +14,7 @@
                             <input v-model="guild" type="text" placeholder="Aeonic">
                         </div>
                     </div>
-                    <a :href="urlToGo" class="ui fluid button">Let's find out!</a>
+                    <input type="button" v-on:click.prevent="navigateToGuild" class="ui fluid button" value="Let's find out!" >
                 </form>
             </div>
         </div>
@@ -30,10 +30,10 @@ export default {
         }
     },
 
-    computed: {
-        urlToGo: function() {
-            return '#/guild/' + this.realm + '/' + this.guild;
+    methods: {
+        navigateToGuild: function() {
+            this.$router.push({ name: 'Guild', params: { realm: this.realm, guild: this.guild } });
         }
-    },
+    }
 };
 </script>

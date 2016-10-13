@@ -8,9 +8,9 @@ import GuildView from '../views/GuildView.vue';
 import GuildNotFoundView from '../views/GuildNotFoundView.vue';
 
 var routes = [
-    { path: '/', component: HomeView },
-    { path: '/guild/:realm/:guild', component: GuildView },
-    { path: '/guild/not-found', component: GuildNotFoundView },
+    { path: '/', name: 'Home', component: HomeView },
+    { path: '/guild/:realm/:guild', name: 'Guild', component: GuildView },
+    { path: '/guild/not-found', name: 'GuildNotFound', component: GuildNotFoundView },
     { path: '*', redirect: '/' }
 ];
 

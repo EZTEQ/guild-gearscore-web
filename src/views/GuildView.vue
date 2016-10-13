@@ -107,7 +107,7 @@ export default {
         guild: function() {
             return this.$store.state.guild;
         },
-        
+
         averageItemLevel: function() {
             var avg = 0;
             this.members.forEach(function(element) {
@@ -133,14 +133,20 @@ export default {
     },
 
     beforeMount: function() {
-        this.$store.dispatch('updateGuild', { realm: this.$route.params.realm, name: this.$route.params.guild });
+        if (!(this.guild.realm === this.$route.params.realm && this.guild.name === this.$route.params.guild)) {
+            this.$store.commit('clearGuildData');
+            this.$store.dispatch('updateGuild', { realm: this.$route.params.realm, name: this.$route.params.guild });
+        }
     },
 
-    /*watch: {
-        '$route': function(to, from) {
-            //todo
+    watch: {
+        '$route': function(target, current) {
+            if (!(current.params.realm === target.params.realm && current.params.guild === target.params.guild)) {
+                this.$store.commit('clearGuildData');
+                this.$store.dispatch('updateGuild', { realm: target.params.realm, name: target.params.guild });
+            }
         }
-    },*/
+    },
 
     methods: {
 

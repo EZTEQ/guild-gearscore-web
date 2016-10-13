@@ -5,6 +5,14 @@ Vue.use(Vuex);
 
 import api from '../api';
 
+function getEmptyGuildData() {
+    return {
+        name: '',
+        realm: '',
+        members: []
+    };
+}
+
 export default new Vuex.Store({
     state: {
         guild: {
@@ -40,6 +48,10 @@ export default new Vuex.Store({
                     Vue.set(state.guild.members[i], 'averageItemLevelEquipped', data.items.averageItemLevelEquipped);
                 }
             }
+        },
+
+        clearGuildData: function (state) {
+            state.guild = getEmptyGuildData();
         }
     },
 
