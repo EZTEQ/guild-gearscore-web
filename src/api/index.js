@@ -1,27 +1,27 @@
 import Vue from 'vue';
 
-const endpoint = '/api';
+var endpoint = '/api';
 
 export default {
-    getGuild(realm, name, callback) {
-        Vue.http.get(`${endpoint}/guild/${realm}/${name}/members`)
-              .then((response) => {
+  getGuild: function(realm, name, callback) {
+    Vue.http.get(endpoint + '/guild/' + realm + '/' + name + '/members')
+              .then( function(response) {
                   callback(response.data);
               })
-              .catch(() => {
-                  // Todo
+              .catch(function() {
+                  //Todo
                   callback({});
               });
-    },
+  },
 
-    getMember(realm, name, callback) {
-        Vue.http.get(`${endpoint}/character/${realm}/${name}/items`)
-              .then((response) => {
+  getMember: function(realm, name, callback) {
+      Vue.http.get(endpoint + '/character/' + realm + '/' + name + '/items')
+              .then(function(response) {
                   callback(response.data);
               })
-              .catch(() => {
-                  // Todo
+              .catch(function() {
+                  //Todo
                   callback({});
               });
-    },
-};
+  },
+}
