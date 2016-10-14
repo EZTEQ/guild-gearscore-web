@@ -179,3 +179,4 @@ export default {
 <style src="semantic-ui-css/components/item.min.css"></style>
 <style src="semantic-ui-css/components/checkbox.min.css"></style>
 <style src="semantic-ui-css/components/loader.min.css"></style>
+<style src="semantic-ui-css/components/icons.min.css"></style>
