@@ -107,6 +107,10 @@ export default {
             return this.$store.state.guild;
         },
 
+        guildName() {
+            return this.guild.name;
+        },
+
         averageItemLevel() {
             let avg = 0;
             this.members.forEach(element => (avg += element.averageItemLevelEquipped));
@@ -135,6 +139,11 @@ export default {
             if (!(current.params.realm === target.params.realm && current.params.guild === target.params.guild)) {
                 this.$store.commit('clearGuildData');
                 this.$store.dispatch('updateGuild', { realm: target.params.realm, name: target.params.guild });
+            }
+        },
+        guildName() {
+            if (this.guildName !== '' && !(this.guildName === this.$route.params.guild)) {
+                this.$router.replace({ name: 'Guild', params: { realm: this.guild.realm, guild: this.guildName } });
             }
         },
     },
