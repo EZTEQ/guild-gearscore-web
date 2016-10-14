@@ -30,5 +30,6 @@ module.exports = {
     //custom rules
     'indent': ['error', 4],
     'max-len': ["error", 120]
-  }
+  },
+  extensions: [".js", ".vue"]
 }

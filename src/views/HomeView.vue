@@ -3,11 +3,11 @@
         <h1>Guild GearScore</h1>
         <div class="ui centered grid">
             <div class="eight wide column">
-                <form class="ui form">
+                <form class="ui form" v-on:submit.prevent="navigateToGuild">
                     <div class="fields">
                         <div class="eight wide field">
                             <label>Realm</label>
-                            <select v-model="realm" class="ui search dropdown">
+                            <select v-model="realm">
                                 <option v-for="option in realms">{{option}}</option>
                             </select>
                         </div>
@@ -16,7 +16,7 @@
                             <input v-model="guild" type="text" placeholder="Your Epic Guild">
                         </div>
                     </div>
-                    <input type="button" v-on:click.prevent="navigateToGuild" class="ui fluid button" value="Let's find out!" >
+                    <input type="submit" class="ui fluid button" value="Let's find out!" >
                 </form>
             </div>
         </div>
@@ -34,14 +34,21 @@ export default {
     },
 
     beforeMount() {
-        // Pick random realm
+        // Pick a random realm
         this.realm = this.realms[Math.floor(Math.random() * this.realms.length)];
     },
 
     methods: {
         navigateToGuild() {
-            this.$router.push({ name: 'Guild', params: { realm: this.realm, guild: this.guild } });
+            if (this.realm && this.guild) {
+                this.$router.push({ name: 'Guild', params: { realm: this.realm, guild: this.guild } });
+            }
         },
     },
 };
 </script>
+<style src="semantic-ui-css/components/grid.min.css"></style>
+<style src="semantic-ui-css/components/form.min.css"></style>
+<style src="semantic-ui-css/components/input.min.css"></style>
+<style src="semantic-ui-css/components/button.min.css"></style>
+<style src="semantic-ui-css/components/item.min.css"></style>

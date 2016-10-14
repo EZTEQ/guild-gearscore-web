@@ -28,4 +28,7 @@
         opacity: 0;
     }
 </style>
-<style src="semantic-ui-css/semantic.min.css"></style>
+<style src="semantic-ui-css/components/reset.min.css"></style>
+<style src="semantic-ui-css/components/site.min.css"></style>
+<style src="semantic-ui-css/components/container.min.css"></style>
+<style src="semantic-ui-css/components/menu.min.css"></style>

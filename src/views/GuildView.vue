@@ -170,3 +170,12 @@ export default {
     },
 };
 </script>
+<style src="semantic-ui-css/components/grid.min.css"></style>
+<style src="semantic-ui-css/components/segment.min.css"></style>
+<style src="semantic-ui-css/components/list.min.css"></style>
+<style src="semantic-ui-css/components/statistic.min.css"></style>
+<style src="semantic-ui-css/components/image.min.css"></style>
+<style src="semantic-ui-css/components/input.min.css"></style>
+<style src="semantic-ui-css/components/item.min.css"></style>
+<style src="semantic-ui-css/components/checkbox.min.css"></style>
+<style src="semantic-ui-css/components/loader.min.css"></style>
