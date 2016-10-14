@@ -93,7 +93,7 @@ const data = {
     sortReverse: false,
     filterName: '',
     filterMaxLevel: true,
-    filterRank: 5,
+    filterRank: 10,
 };
 
 export default {
