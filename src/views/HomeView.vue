@@ -7,11 +7,13 @@
                     <div class="fields">
                         <div class="eight wide field">
                             <label>Realm</label>
-                            <input v-model="realm" type="text" placeholder="Mal'Ganis">
+                            <select v-model="realm" class="ui search dropdown">
+                                <option v-for="option in realms">{{option}}</option>
+                            </select>
                         </div>
                         <div class="eight wide field">
                             <label>Guild</label>
-                            <input v-model="guild" type="text" placeholder="Aeonic">
+                            <input v-model="guild" type="text" placeholder="Your Epic Guild">
                         </div>
                     </div>
                     <input type="button" v-on:click.prevent="navigateToGuild" class="ui fluid button" value="Let's find out!" >
@@ -27,7 +29,13 @@ export default {
         return {
             realm: '',
             guild: '',
+            realms: this.$store.state.realms,
         };
+    },
+
+    beforeMount() {
+        // Pick random realm
+        this.realm = this.realms[Math.floor(Math.random() * this.realms.length)];
     },
 
     methods: {

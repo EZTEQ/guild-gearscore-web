@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import api from '../api';
+import realms from './realms';
 
 Vue.use(Vuex);
 
@@ -20,6 +21,7 @@ export default new Vuex.Store({
             realm: '',
             members: [],
         },
+        realms,
     },
 
     mutations: {
