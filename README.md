@@ -1,6 +1,5 @@
-# guild-gearscore-web
-
-> A Vue.js project
+# Guild GearScore Web
+> Web app for the Guild Gearscore Server.
 
 ## Build Setup
 
