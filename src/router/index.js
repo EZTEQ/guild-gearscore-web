@@ -1,19 +1,19 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import HomeView from '../views/HomeView';
+import GuildView from '../views/GuildView';
+import GuildNotFoundView from '../views/GuildNotFoundView';
+
 Vue.use(VueRouter);
 
-import HomeView from '../views/HomeView.vue';
-import GuildView from '../views/GuildView.vue';
-import GuildNotFoundView from '../views/GuildNotFoundView.vue';
-
-var routes = [
+const routes = [
     { path: '/', name: 'Home', component: HomeView },
     { path: '/guild/:realm/:guild', name: 'Guild', component: GuildView },
     { path: '/guild/not-found', name: 'GuildNotFound', component: GuildNotFoundView },
-    { path: '*', redirect: '/' }
+    { path: '*', redirect: '/' },
 ];
 
 export default new VueRouter({
-    routes
+    routes,
 });

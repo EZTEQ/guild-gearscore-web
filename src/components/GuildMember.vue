@@ -12,29 +12,27 @@
 export default {
     props: ['name'],
 
-    data: function() {
+    data() {
         return { avatarError: false };
     },
 
     computed: {
-        character: function() {
-            return this.$store.state.guild.members.filter(function(x) {
-                return (x.name === this.name);
-            }, this)[0];
+        character() {
+            return this.$store.state.guild.members.filter(x => (x.name === this.name), this)[0];
         },
-        avatar: function() {
+        avatar() {
             return this.avatarError ? '' : this.character.avatar;
-        }
+        },
     },
 
-    mounted: function() {
+    mounted() {
         this.$store.dispatch('updateMember', { realm: this.character.realm, name: this.name });
     },
 
     methods: {
-        onAvatarError: function() {
+        onAvatarError() {
             this.avatarError = true;
-        }
-    }
+        },
+    },
 };
 </script>

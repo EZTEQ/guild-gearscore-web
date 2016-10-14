@@ -23,17 +23,17 @@
 
 <script>
 export default {
-    data: function() {
+    data() {
         return {
-            realm: "",
-            guild: ""
-        }
+            realm: '',
+            guild: '',
+        };
     },
 
     methods: {
-        navigateToGuild: function() {
+        navigateToGuild() {
             this.$router.push({ name: 'Guild', params: { realm: this.realm, guild: this.guild } });
-        }
-    }
+        },
+    },
 };
 </script>

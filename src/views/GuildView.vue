@@ -75,64 +75,55 @@
 import GuildMember from '../components/GuildMember';
 
 function sortByProperty(members, prop, secondprop, reverse) {
-    var sortedMembers = members.sort(function(a, b) { 
+    const sortedMembers = members.sort((a, b) => {
         if (a[prop] < b[prop]) {
-            return -1
+            return -1;
         } else if (a[prop] > b[prop]) {
-            return 1
-        } else {
-            //Equal - use second prop
-            return (a[secondprop] < b[secondprop] ? -1 : 1);
+            return 1;
         }
+        // Equal - use second prop
+        return (a[secondprop] < b[secondprop] ? -1 : 1);
     });
     return (reverse) ? sortedMembers.reverse() : sortedMembers;
 }
 
-var data = {
+const data = {
     sortBy: 'rank',
     sortBySecond: 'name',
     sortReverse: false,
     filterName: '',
     filterMaxLevel: true,
-    filterRank: 20
-}
+    filterRank: 5,
+};
 
 export default {
 
-    data: function () {
+    data() {
         return data;
     },
 
     computed: {
-        guild: function() {
+        guild() {
             return this.$store.state.guild;
         },
 
-        averageItemLevel: function() {
-            var avg = 0;
-            this.members.forEach(function(element) {
-                avg += element.averageItemLevelEquipped;
-            });
+        averageItemLevel() {
+            let avg = 0;
+            this.members.forEach(element => (avg += element.averageItemLevelEquipped));
             avg = Math.round(avg / this.members.length);
             return (typeof avg === 'number' && !isNaN(avg)) ? avg : 0;
         },
 
-        members: function() {
-            var guildMembers = this.guild.members;
+        members() {
+            const guildMembers = this.guild.members;
             return sortByProperty(guildMembers, this.sortBy, this.sortBySecond, this.sortReverse)
-                .filter(function(x) { //name
-                    return (x.name.toLowerCase().indexOf(this.filterName.toLowerCase()) !== -1);
-                }, this)
-                .filter(function(x) { //maxlevel
-                    return (!this.filterMaxLevel || (x.level === 110));
-                }, this)
-                .filter(function(x) {
-                    return (x.rank <= this.filterRank);
-                }, this);
-        }
+                .filter(x => (x.name.toLowerCase().indexOf(this.filterName.toLowerCase()) !== -1), this)
+                .filter(x => (!this.filterMaxLevel || (x.level === 110)), this)
+                .filter(x => (x.rank <= this.filterRank), this);
+        },
     },
 
-    beforeMount: function() {
+    beforeMount() {
         if (!(this.guild.realm === this.$route.params.realm && this.guild.name === this.$route.params.guild)) {
             this.$store.commit('clearGuildData');
             this.$store.dispatch('updateGuild', { realm: this.$route.params.realm, name: this.$route.params.guild });
@@ -140,21 +131,21 @@ export default {
     },
 
     watch: {
-        '$route': function(target, current) {
+        $route(target, current) {
             if (!(current.params.realm === target.params.realm && current.params.guild === target.params.guild)) {
                 this.$store.commit('clearGuildData');
                 this.$store.dispatch('updateGuild', { realm: target.params.realm, name: target.params.guild });
             }
-        }
+        },
     },
 
     methods: {
 
-        addItemLevel: function(itemLevel) {
+        addItemLevel(itemLevel) {
             this.itemLevels.push(itemLevel);
         },
 
-        sort: function(prop, secondprop) {
+        sort(prop, secondprop) {
             if (this.sortBy === prop && this.sortBySecond === secondprop) {
                 this.sortReverse = !this.sortReverse;
             } else {
@@ -162,11 +153,11 @@ export default {
                 this.sortBySecond = secondprop;
                 this.sortReverse = false;
             }
-        }
+        },
     },
 
     components: {
-        'guild-member': GuildMember
-    }
+        'guild-member': GuildMember,
+    },
 };
 </script>
