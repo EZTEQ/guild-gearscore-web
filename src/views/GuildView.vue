@@ -178,5 +178,8 @@ export default {
 <style src="semantic-ui-css/components/input.min.css"></style>
 <style src="semantic-ui-css/components/item.min.css"></style>
 <style src="semantic-ui-css/components/checkbox.min.css"></style>
+<style src="semantic-ui-css/components/dimmer.min.css"></style>
 <style src="semantic-ui-css/components/loader.min.css"></style>
-<style src="semantic-ui-css/components/icons.min.css"></style>
+<style src="semantic-ui-css/components/icon.min.css"></style>
+<style src="semantic-ui-css/components/header.min.css"></style>
+<style src="semantic-ui-css/components/divider.min.css"></style>
