@@ -23,7 +23,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'https://staging.markhaehnel.de/api',
+        target: 'https://guildgearscore.cf/api',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
