@@ -2,7 +2,9 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import api from '../api';
-import realms from './realms';
+import realms from '../data/realms';
+import races from '../data/races';
+import classes from '../data/classes';
 
 Vue.use(Vuex);
 
@@ -38,6 +40,8 @@ export default new Vuex.Store({
                     realm: element.character.realm,
                     rank: element.rank,
                     level: element.character.level,
+                    race: races.filter(x => (x.id === element.character.race), this)[0].name,
+                    class: classes[element.character.class],
                     avatar: `//render-api-eu.worldofwarcraft.com/static-render/eu/${element.character.thumbnail}`,
                     averageItemLevelEquipped: 0,
                 });

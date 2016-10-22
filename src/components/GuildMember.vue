@@ -3,8 +3,11 @@
         <img class="ui rounded mini image" :src="character.avatar">
         <div class="content">
             <span class="header">{{name}}</span>
-            {{character.averageItemLevelEquipped}}
+            <i>{{character.race}} - {{character.class}}</i>
         </div>
+        <h3 class="ui right floated header">
+            {{character.averageItemLevelEquipped}} 
+        </h3>
     </div>
 </template>
 
@@ -27,3 +30,10 @@ export default {
     },
 };
 </script>
+
+<style>
+    .ui.right.floated.header {
+        line-height: 36px;
+    }
+</style>
+<style src="semantic-ui-css/components/label.min.css"></style>

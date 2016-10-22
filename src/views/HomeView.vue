@@ -4,14 +4,14 @@
         <div class="ui centered grid">
             <div class="eight wide column">
                 <form class="ui form" v-on:submit.prevent="navigateToGuild">
-                    <div class="fields">
-                        <div class="eight wide field">
+                    <div class="two fields">
+                        <div class="field">
                             <label>Realm</label>
                             <select v-model="realm">
                                 <option v-for="option in realms">{{option}}</option>
                             </select>
                         </div>
-                        <div class="eight wide field">
+                        <div class="field">
                             <label>Guild</label>
                             <input v-model="guild" type="text" placeholder="Your Epic Guild">
                         </div>

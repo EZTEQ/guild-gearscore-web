@@ -4,10 +4,10 @@
             <div class="ui text loader">Loading</div>
         </div>
         <div class="ui segments">
-            <div class="ui segment">
+            <div class="ui secondary segment">
                 <p>Overview</p>
             </div>
-            <div class="ui secondary segment">
+            <div class="ui segment">
                 <div class="ui two center aligned statistics">
                     <div class="statistic">
                         <div class="value" v-text="guild.name"></div>
