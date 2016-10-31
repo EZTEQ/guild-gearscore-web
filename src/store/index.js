@@ -41,7 +41,7 @@ export default new Vuex.Store({
                     rank: element.rank,
                     level: element.character.level,
                     race: races.filter(x => (x.id === element.character.race), this)[0].name,
-                    class: classes[element.character.class],
+                    class: classes.filter(x => (x.id === element.character.class), this)[0].name,
                     avatar: `//render-api-eu.worldofwarcraft.com/static-render/eu/${element.character.thumbnail}`,
                     averageItemLevelEquipped: 0,
                 });
