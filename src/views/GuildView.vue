@@ -130,7 +130,10 @@ export default {
     beforeMount() {
         if (!(this.guild.realm === this.$route.params.realm && this.guild.name === this.$route.params.guild)) {
             this.$store.commit('clearGuildData');
-            this.$store.dispatch('updateGuild', { realm: this.$route.params.realm, name: this.$route.params.guild });
+            this.$store.dispatch('updateGuild', { realm: this.$route.params.realm, name: this.$route.params.guild })
+                .catch(() => {
+                    this.$router.push({ name: 'GuildNotFound' });
+                });
         }
     },
 

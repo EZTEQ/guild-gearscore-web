@@ -64,9 +64,10 @@ export default new Vuex.Store({
 
     actions: {
         updateGuild(context, payload) {
-            api.getGuild(payload.realm, payload.name, (data) => {
-                context.commit('updateGuild', data);
-            });
+            return api.getGuild(payload.realm, payload.name)
+                .then((response) => {
+                    context.commit('updateGuild', response.data);
+                });
         },
 
         updateMember(context, payload) {
