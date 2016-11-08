@@ -129,19 +129,14 @@ export default {
 
     beforeMount() {
         if (!(this.guild.realm === this.$route.params.realm && this.guild.name === this.$route.params.guild)) {
-            this.$store.commit('clearGuildData');
-            this.$store.dispatch('updateGuild', { realm: this.$route.params.realm, name: this.$route.params.guild })
-                .catch(() => {
-                    this.$router.push({ name: 'GuildNotFound' });
-                });
+            this.updateGuild(this.$route.params.realm, this.$route.params.guild);
         }
     },
 
     watch: {
         $route(target, current) {
             if (!(current.params.realm === target.params.realm && current.params.guild === target.params.guild)) {
-                this.$store.commit('clearGuildData');
-                this.$store.dispatch('updateGuild', { realm: target.params.realm, name: target.params.guild });
+                this.updateGuild(target.params.realm, target.params.guild);
             }
         },
         guildName() {
@@ -165,6 +160,14 @@ export default {
                 this.sortBySecond = secondprop;
                 this.sortReverse = false;
             }
+        },
+
+        updateGuild(realm, name) {
+            this.$store.commit('clearGuildData');
+            this.$store.dispatch('updateGuild', { realm, name })
+                .catch(() => {
+                    this.$router.push({ name: 'GuildNotFound' });
+                });
         },
     },
 
