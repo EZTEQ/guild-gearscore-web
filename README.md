@@ -1,7 +1,10 @@
 # Guild GearScore Web
-> Web app for the Guild Gearscore Server.
+With Guild GearScore you can analyze a the average item level of guilds in World of Warcraft.
+
+#### Demo: [guildgearscore.cf](https://guildgearscore.cf/)
 
 ## Build Setup
+You need the [Guild Gearscore Server](https://github.com/EZTEQ/guild-gearscore-server) to run this web app.
 
 ``` bash
 # install dependencies
