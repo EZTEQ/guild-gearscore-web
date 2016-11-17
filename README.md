@@ -23,7 +23,7 @@ npm run build
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 ### Attribution
-Built with [Vue.js](https://github.com/vuejs/vue) and [Semantic UI](https://github.com/Semantic-Org/Semantic-UI).
+Built with [Vue.js](https://github.com/vuejs/vue), [Semantic UI](https://github.com/Semantic-Org/Semantic-UI) and [Blizzard.js](https://github.com/benweier/blizzard.js).
 
 ### License
 This project is licensed under the terms of the MIT license. See LICENSE file for details.
