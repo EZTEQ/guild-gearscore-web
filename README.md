@@ -5,6 +5,7 @@ With Guild GearScore you can analyze a the average item level of guilds in World
 
 ## Build Setup
 You need the [Guild Gearscore Server](https://github.com/EZTEQ/guild-gearscore-server) to run this web app.
+The server has to run under example.com/api.
 
 ``` bash
 # install dependencies
