@@ -58,12 +58,6 @@
                             <label>Rank (Smaller is higher)</label>
                             <input type="number" min="0" v-model.number="filterRank">
                         </div>
-                        <div class="field">
-                            <div class="ui checkbox">
-                                <input type="checkbox" v-model="filterMaxLevel">
-                                <label>Level 110 only</label>
-                            </div>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -92,7 +86,6 @@ const data = {
     sortBySecond: 'name',
     sortReverse: false,
     filterName: '',
-    filterMaxLevel: true,
     filterRank: 10,
 };
 
@@ -122,7 +115,6 @@ export default {
             const guildMembers = this.guild.members;
             return sortByProperty(guildMembers, this.sortBy, this.sortBySecond, this.sortReverse)
                 .filter(x => (x.name.toLowerCase().indexOf(this.filterName.toLowerCase()) !== -1), this)
-                .filter(x => (!this.filterMaxLevel || (x.level === 110)), this)
                 .filter(x => (x.rank <= this.filterRank), this);
         },
     },
