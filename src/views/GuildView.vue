@@ -33,6 +33,10 @@
             <div class="four wide column">
                 <h4 class="ui horizontal divider header"><i class="sort alphabet ascending icon"></i>Order By</h4>
                 <div class="ui fluid vertical menu">
+                    <a class="item" :class="{ active: sortBy == 'averageItemLevelEquipped' }" v-on:click="sort('averageItemLevelEquipped', 'name', $event)">
+                        Item Level
+                        <i class="dropdown icon" :class="{ 'vertically flipped': !sortReverse }" v-if="sortBy == 'averageItemLevelEquipped'"></i>
+                    </a>
                     <a class="item" :class="{ active: sortBy == 'rank' }" v-on:click="sort('rank', 'name', $event)">
                         Guild Rank
                         <i class="dropdown icon" :class="{ 'vertically flipped': !sortReverse }" v-if="sortBy == 'rank'"></i>
@@ -40,10 +44,6 @@
                     <a class="item" :class="{ active: sortBy == 'name' }" v-on:click="sort('name', 'rank', $event)">
                         Name
                         <i class="dropdown icon" :class="{ 'vertically flipped': !sortReverse }" v-if="sortBy == 'name'"></i>
-                    </a>
-                    <a class="item" :class="{ active: sortBy == 'averageItemLevelEquipped' }" v-on:click="sort('averageItemLevelEquipped', 'name', $event)">
-                        Item Level
-                        <i class="dropdown icon" :class="{ 'vertically flipped': !sortReverse }" v-if="sortBy == 'averageItemLevelEquipped'"></i>
                     </a>
                 </div>
 
@@ -82,9 +82,9 @@ function sortByProperty(members, prop, secondprop, reverse) {
 }
 
 const data = {
-    sortBy: 'rank',
+    sortBy: 'averageItemLevelEquipped',
     sortBySecond: 'name',
-    sortReverse: false,
+    sortReverse: true,
     filterName: '',
     filterRank: 10,
 };
