@@ -5,9 +5,11 @@
             <span class="header">{{name}}</span>
             <i>{{character.race}} - {{character.class}}</i>
         </div>
+        <span class="right floated" data-tooltip="Open on Battle.net"><i class="ext external link icon" @click="openInBattleNet"></i></span>
         <h3 class="ui right floated header" :data-tooltip="'Average: ' + character.averageItemLevel + ' / Equipped: ' + character.averageItemLevelEquipped">
-            <i>{{character.averageItemLevelEquipped}}</i>
+            <span class="gs">{{character.averageItemLevelEquipped}}</span>
         </h3>
+        
     </div>
 </template>
 
@@ -24,6 +26,12 @@ export default {
             return this.$store.state.guild.members.filter(x => (x.name === this.name), this)[0];
         },
     },
+
+    methods: {
+        openInBattleNet() {
+            window.open(`//eu.battle.net/wow/en/character/${this.character.realm}/${this.character.name}/`, '_blank'); // eslint-disable-line
+        },
+    },
 };
 </script>
 
@@ -35,7 +43,10 @@ export default {
 <style src="semantic-ui-css/components/label.min.css"></style>
 <style src="semantic-ui-css/components/popup.min.css"></style>
 <style>
-    h3>i {
+    .gs {
         border-bottom: 1px dotted #555;
+    }
+    .ext {
+        line-height: 40px;
     }
 </style>
