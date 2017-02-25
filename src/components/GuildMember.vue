@@ -5,8 +5,8 @@
             <span class="header">{{name}}</span>
             <i>{{character.race}} - {{character.class}}</i>
         </div>
-        <h3 class="ui right floated header">
-            {{character.averageItemLevelEquipped}} 
+        <h3 class="ui right floated header" :data-tooltip="'Average: ' + character.averageItemLevel + ' / Equipped: ' + character.averageItemLevelEquipped">
+            <i>{{character.averageItemLevelEquipped}}</i>
         </h3>
     </div>
 </template>
@@ -24,10 +24,6 @@ export default {
             return this.$store.state.guild.members.filter(x => (x.name === this.name), this)[0];
         },
     },
-
-    mounted() {
-        this.$store.dispatch('updateMember', { realm: this.character.realm, name: this.name });
-    },
 };
 </script>
 
@@ -37,3 +33,4 @@ export default {
     }
 </style>
 <style src="semantic-ui-css/components/label.min.css"></style>
+<style src="semantic-ui-css/components/popup.min.css"></style>

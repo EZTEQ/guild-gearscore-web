@@ -43,18 +43,11 @@ export default new Vuex.Store({
                     race: races.filter(x => (x.id === element.character.race), this)[0].name,
                     class: classes.filter(x => (x.id === element.character.class), this)[0].name,
                     avatar: `//render-api-eu.worldofwarcraft.com/static-render/eu/${element.character.thumbnail}`,
-                    averageItemLevelEquipped: 0,
+                    averageItemLevel: element.character.averageItemLevel,
+                    averageItemLevelEquipped: element.character.averageItemLevelEquipped,
                 });
             }, this);
             state.guild = guild;
-        },
-
-        updateMember(state, data) {
-            for (let i = 0; i < state.guild.members.length; i += 1) {
-                if (data.name === state.guild.members[i].name) {
-                    Vue.set(state.guild.members[i], 'averageItemLevelEquipped', data.items.averageItemLevelEquipped);
-                }
-            }
         },
 
         clearGuildData(state) {
@@ -70,11 +63,5 @@ export default new Vuex.Store({
                 });
         },
 
-        updateMember(context, payload) {
-            const member = context.state.guild.members.filter(x => (x.name === payload.name))[0];
-            if (member.averageItemLevelEquipped === 0) {
-                api.getMember(payload.realm, payload.name, data => context.commit('updateMember', data));
-            }
-        },
     },
 });
