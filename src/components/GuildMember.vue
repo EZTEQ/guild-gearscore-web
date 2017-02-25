@@ -34,3 +34,8 @@ export default {
 </style>
 <style src="semantic-ui-css/components/label.min.css"></style>
 <style src="semantic-ui-css/components/popup.min.css"></style>
+<style>
+    h3>i {
+        border-bottom: 1px dotted #555;
+    }
+</style>
