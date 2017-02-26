@@ -34,8 +34,9 @@ export default new Vuex.Store({
                 realm: data.realm,
                 members: [],
             };
-            data.members.forEach((element) => {
+            data.members.forEach((element, i) => {
                 guild.members.push({
+                    id: i, // for optimizing v-for loops
                     name: element.character.name,
                     realm: element.character.realm,
                     rank: element.rank,
