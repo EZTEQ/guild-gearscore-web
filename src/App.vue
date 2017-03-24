@@ -10,6 +10,7 @@
                     <router-link class="btn btn-link" to="/">Go back to start</router-link>
                 </section>
             </div>
+            <div class="divider"></div>
         </div>
             <router-view></router-view>
     </div>
