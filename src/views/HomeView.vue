@@ -1,7 +1,9 @@
 <template>
-    <div class="ui center aligned container">
-        <h1>Guild GearScore</h1>
-        <guild-picker></guild-picker>
+    <div class="container mw-400 landing">
+        <div class="container">
+            <h1 class="text-center">Guild GearScore</h1>
+            <guild-picker></guild-picker>
+        </div>
     </div>
 </template>
 
@@ -14,4 +16,11 @@ export default {
     },
 };
 </script>
-<style src="semantic-ui-css/components/grid.min.css"></style>
+
+<style scoped>
+    .landing {
+        height: 90vh;
+        display: flex;
+        align-items: center;
+    }
+</style>

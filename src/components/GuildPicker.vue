@@ -1,23 +1,30 @@
 <template>
-    <div class="ui centered grid">
-        <div class="eight wide column">
-            <form class="ui form" v-on:submit.prevent="navigateToGuild">
-                <div class="two fields">
-                    <div class="field">
-                        <label>Realm</label>
-                        <select v-model="realm">
-                            <option v-for="option in realms">{{option}}</option>
-                        </select>
-                    </div>
-                    <div class="field">
-                        <label>Guild</label>
-                        <input v-model="guild" type="text" placeholder="Your Epic Guild">
-                    </div>
-                </div>
-                <input type="submit" class="ui fluid button" value="Let's find out!" >
-            </form>
+    <form class="form-horizontal centered" v-on:submit.prevent="navigateToGuild">
+        <div class="form-group">
+            <div class="col-2">
+                <label class="form-label">Realm</label>
+            </div>
+            <div class="col-10">
+                <select class="form-select select-lg fluid" v-model="realm">
+                    <option v-for="option in realms">{{option}}</option>
+                </select>
+            </div>
         </div>
-    </div>
+        <div class="form-group">
+            <div class="col-2">
+                <label class="form-label">Guild</label>
+            </div>
+            <div class="col-10">
+                <input class="form-input input-lg" v-model="guild" type="text" placeholder="Your Epic Guild">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-2"></div>
+            <div class="col-10">
+                <button type="submit" class="btn btn-lg btn-primary fluid">Let's find out!</button>
+            </div>
+        </div>
+    </form>
 </template>
 
 <script>
@@ -45,8 +52,3 @@ export default {
     },
 };
 </script>
-<style src="semantic-ui-css/components/grid.min.css"></style>
-<style src="semantic-ui-css/components/form.min.css"></style>
-<style src="semantic-ui-css/components/input.min.css"></style>
-<style src="semantic-ui-css/components/button.min.css"></style>
-<style src="semantic-ui-css/components/item.min.css"></style>

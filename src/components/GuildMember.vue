@@ -40,8 +40,6 @@ export default {
         line-height: 36px;
     }
 </style>
-<style src="semantic-ui-css/components/label.min.css"></style>
-<style src="semantic-ui-css/components/popup.min.css"></style>
 <style>
     .gs {
         border-bottom: 1px dotted #555;

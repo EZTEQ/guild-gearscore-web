@@ -1,12 +1,18 @@
 <template>
-    <div class="ui container">
-        <div class="ui dimmer" :class="{ active: this.guild.name === ''}">
+    <div class="container mw-900">
+        <div class="ui dimmer" :class="{ hidden: this.guild.name !== ''}">
             <div class="ui text loader">Loading</div>
         </div>
+        <div class="container text-center">
+            <figure class="avatar avatar-xl" style="background-color: #5764c6;">
+                <img :src="guild.emblem" :alt="guild.name">
+            </figure>
+            <h1 class="mb-0">{{ guild.name }}</h1>
+            {{ guild.realm }}
+        </div>
+
+
         <div class="ui segments">
-            <div class="ui secondary segment">
-                <p>Overview</p>
-            </div>
             <div class="ui segment">
                 <div class="ui two center aligned statistics">
                     <div class="statistic">
@@ -104,6 +110,12 @@ export default {
             return this.guild.name;
         },
 
+        guildNameInitials() {
+            let initials = this.guild.name.match(/\b\w/g) || [];
+            initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
+            return initials;
+        },
+
         averageItemLevel() {
             let avg = 0;
             this.members.forEach(element => (avg += element.averageItemLevelEquipped));
@@ -168,16 +180,3 @@ export default {
     },
 };
 </script>
-<style src="semantic-ui-css/components/grid.min.css"></style>
-<style src="semantic-ui-css/components/segment.min.css"></style>
-<style src="semantic-ui-css/components/list.min.css"></style>
-<style src="semantic-ui-css/components/statistic.min.css"></style>
-<style src="semantic-ui-css/components/image.min.css"></style>
-<style src="semantic-ui-css/components/input.min.css"></style>
-<style src="semantic-ui-css/components/item.min.css"></style>
-<style src="semantic-ui-css/components/checkbox.min.css"></style>
-<style src="semantic-ui-css/components/dimmer.min.css"></style>
-<style src="semantic-ui-css/components/loader.min.css"></style>
-<style src="semantic-ui-css/components/icon.min.css"></style>
-<style src="semantic-ui-css/components/header.min.css"></style>
-<style src="semantic-ui-css/components/divider.min.css"></style>

@@ -1,34 +1,42 @@
 <template>
     <div id="app">
-        <div class="ui container" id="navigation">
-            <div class="ui large secondary pointing menu">
-                <span class="active item">Guild GearScore</span>
-                <div class="right menu">
-                    <router-link class="item" to="/" v-if="this.$route.path != '/'">Go back to start</router-link>
-                </div>
+        <div class="container mw-900 mt-10 mb-10" id="navigation" v-if="this.$route.path != '/'">
+            <div class="navbar">
+                <section class="navbar-primary">
+                    <figure class="avatar mr-10" data-initial="GGS" style="background-color: #5764c6;"></figure>
+                    Guild GearScore
+                </section>
+                <section class="navbar-section">
+                    <router-link class="btn btn-link" to="/">Go back to start</router-link>
+                </section>
             </div>
         </div>
-        <transition name="fade" mode="out-in">
             <router-view></router-view>
-        </transition>
     </div>
 </template>
-
+    
 <style>
     .hidden {
         display: none !important;
     }
-    #navigation {
-        margin-bottom: 12px;
+    .mw-900 {
+        max-width: 900px;
+    }
+    .mw-400 {
+        max-width: 400px;
     }
     .fade-enter-active, .fade-leave-active {
-        transition: all .2s ease;
+        transition: all .1s ease;
     }
     .fade-enter, .fade-leave-active {
         opacity: 0;
     }
+    .fluid {
+        width: 100%
+    }
+    .mb-0 {
+        margin-bottom: 0;
+    }
 </style>
-<style src="semantic-ui-css/components/reset.min.css"></style>
-<style src="semantic-ui-css/components/site.min.css"></style>
-<style src="semantic-ui-css/components/container.min.css"></style>
-<style src="semantic-ui-css/components/menu.min.css"></style>
+<style src="spectre.css/dist/spectre.min.css" />
+<style src="spectre.css/dist/spectre-exp.min.css" />

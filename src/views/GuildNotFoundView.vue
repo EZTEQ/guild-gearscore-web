@@ -1,9 +1,11 @@
 <template>
-    <div class="ui center aligned container">
-        <div class="ui red secondary inverted segment">
+    <div class="container mw-900">
+        <div class="toast toast-danger text-center">
             The guild you are searching for has not been found.
         </div>
-        <guild-picker></guild-picker>
+        <div class="container mw-400">
+            <guild-picker></guild-picker>
+        </div>
     </div>
 </template>
 <script>
@@ -15,4 +17,3 @@ export default {
     },
 };
 </script>
-<style src="semantic-ui-css/components/segment.min.css"></style>

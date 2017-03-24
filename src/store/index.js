@@ -21,6 +21,7 @@ export default new Vuex.Store({
         guild: {
             name: '',
             realm: '',
+            emblem: '',
             members: [],
         },
         realms,
@@ -32,6 +33,7 @@ export default new Vuex.Store({
             const guild = {
                 name: data.name,
                 realm: data.realm,
+                emblem: `http://eu.battle.net/wow/static/images/guild/tabards/emblem_${data.emblem.icon}.png`,
                 members: [],
             };
             data.members.forEach((element, i) => {
