@@ -1,15 +1,21 @@
 <template>
-    <div class="item">
-        <img class="ui rounded mini image" :src="character.avatar">
-        <div class="content">
-            <span class="header">{{name}}</span>
-            <i>{{character.race}} - {{character.class}}</i>
+    <div class="tile">
+        <div class="tile-icon">
+            <figure class="avatar avatar-lg">
+                <img :src="character.avatar">
+            </figure>
         </div>
-        <span class="right floated" data-tooltip="Open on Battle.net"><i class="ext external link icon" @click="openInBattleNet"></i></span>
-        <h3 class="ui right floated header" :data-tooltip="'Average: ' + character.averageItemLevel + ' / Equipped: ' + character.averageItemLevelEquipped">
-            <span class="gs">{{character.averageItemLevelEquipped}}</span>
-        </h3>
-        
+        <div class="tile-content">
+            <h5 class="tile-title mb-0">{{ name }}</h5>
+            <p class="tile-subtitle">{{character.race}} - {{character.class}}</p>
+        </div>
+            <h3 class="float-right mt-0">
+                {{character.averageItemLevelEquipped}}
+            </h3>
+
+        <div class="tile-action">
+            <a :href="armoryUrl" target="_blank" class="armory"><button class="btn btn-link"><i class="icon-new-tab"></i></button></a>
+        </div>
     </div>
 </template>
 
@@ -25,6 +31,9 @@ export default {
         character() {
             return this.$store.state.guild.members.filter(x => (x.name === this.name), this)[0];
         },
+        armoryUrl() {
+            return `//eu.battle.net/wow/en/character/${this.character.realm}/${this.character.name}/`;
+        },
     },
 
     methods: {
@@ -36,15 +45,7 @@ export default {
 </script>
 
 <style>
-    .ui.right.floated.header {
+    .armory {
         line-height: 36px;
-    }
-</style>
-<style>
-    .gs {
-        border-bottom: 1px dotted #555;
-    }
-    .ext {
-        line-height: 40px;
     }
 </style>

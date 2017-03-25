@@ -3,68 +3,98 @@
         <div class="ui dimmer" :class="{ hidden: this.guild.name !== ''}">
             <div class="ui text loader">Loading</div>
         </div>
-        <div class="container text-center">
-            <figure class="avatar avatar-xl" style="background-color: #5764c6;">
-                <img :src="guild.emblem" :alt="guild.name">
-            </figure>
-            <h1 class="mb-0">{{ guild.name }}</h1>
-            {{ guild.realm }}
-        </div>
 
-
-        <div class="ui segments">
-            <div class="ui segment">
-                <div class="ui two center aligned statistics">
-                    <div class="statistic">
-                        <div class="value" v-text="guild.name"></div>
-                        <div class="label" v-text="guild.realm"></div>
-                    </div>
-                    <div class="statistic">
-                        <div class="value" v-text="averageItemLevel"></div>
-                        <div class="label">Average Item Level</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ui mobile reversed  stackable two column centered grid">
-            <div class="twelve wide column">
-                <h4 class="ui horizontal divider header"><i class="users icon"></i>Members ({{members.length}})</h4>
-                <div class="ui segment">
-                    <div class="ui large middle aligned divided list">
-                        <guild-member v-for="member in members" :name="member.name" :key="member.id">
-                        </guild-member>
-                    </div>
-                </div>
-            </div>
-            <div class="four wide column">
-                <h4 class="ui horizontal divider header"><i class="sort alphabet ascending icon"></i>Order By</h4>
-                <div class="ui fluid vertical menu">
-                    <a class="item" :class="{ active: sortBy == 'averageItemLevelEquipped' }" v-on:click="sort('averageItemLevelEquipped', 'name', $event)">
-                        Item Level
-                        <i class="dropdown icon" :class="{ 'vertically flipped': !sortReverse }" v-if="sortBy == 'averageItemLevelEquipped'"></i>
-                    </a>
-                    <a class="item" :class="{ active: sortBy == 'rank' }" v-on:click="sort('rank', 'name', $event)">
-                        Guild Rank
-                        <i class="dropdown icon" :class="{ 'vertically flipped': !sortReverse }" v-if="sortBy == 'rank'"></i>
-                    </a>
-                    <a class="item" :class="{ active: sortBy == 'name' }" v-on:click="sort('name', 'rank', $event)">
-                        Name
-                        <i class="dropdown icon" :class="{ 'vertically flipped': !sortReverse }" v-if="sortBy == 'name'"></i>
-                    </a>
-                </div>
-
-                <h4 class="ui horizontal divider header"><i class="filter icon"></i>Filter</h4>
-                <div class="ui segment">
-                    <form class="ui form">
-                        <div class="field">
-                            <label>Name</label>
-                            <input type="text" v-model="filterName">
+        <div class="container">
+            <div class="columns">
+                <div class="col-9">
+                    <div class="container text-center">
+                        <div class="panel mb-10">
+                            <div class="panel-body">
+                                <div class="tile">
+                                    <div class="tile-icon">
+                                        <img class="guild-icon mb-0" :src="guild.emblem" :alt="guild.name">
+                                    </div>
+                                    <div class="tile-body fluid">
+                                        <h1 class="mb-0">{{ guild.name }}</h1>
+                                        {{ guild.realm }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="field">
-                            <label>Rank (Smaller is higher)</label>
-                            <input type="number" min="0" v-model.number="filterRank">
+                    </div>
+
+                    <div class="container">
+                        <div class="panel">
+                            <div class="panel-header"></div>
+                            <div class="panel-body">
+                                <guild-member v-for="member in members" :name="member.name" :key="member.id"></guild-member>
+                            </div>
                         </div>
-                    </form>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="menu mb-10" v-bind:style="{ backgroundColor: color }">
+                        <div class="text-center">
+                            <h1 class="mb-0" v-text="averageItemLevel"></h1>
+                            <h6>Average Item Level</h6>
+                        </div>
+                    </div>
+
+                    <!-- ORDER BY MENU -->
+                    <div class="menu mb-10">
+                        <div class="menu-item">
+                            <div class="tile tile-centered">
+                                <div class="tile-icon">
+                                    <i class="icon-sort"></i>
+                                </div>
+                                <div class="tile-content">Order By</div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="menu-item">
+                            <a :class="{ active: sortBy == 'averageItemLevelEquipped' }" v-on:click="sort('averageItemLevelEquipped', 'name', $event)">
+                                Item Level
+                                <i class="float-right" :class="[sortReverse ? 'icon-arrow-down' : 'icon-arrow-up']" v-if="sortBy == 'averageItemLevelEquipped'"></i>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a :class="{ active: sortBy == 'rank' }" v-on:click="sort('rank', 'name', $event)">
+                                Guild Rank
+                                <i class="float-right" :class="[sortReverse ? 'icon-arrow-down' : 'icon-arrow-up']" v-if="sortBy == 'rank'"></i>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a :class="{ active: sortBy == 'name' }" v-on:click="sort('name', 'rank', $event)">
+                                Name
+                                <i class="float-right" :class="[sortReverse ? 'icon-arrow-down' : 'icon-arrow-up']" v-if="sortBy == 'name'"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- FILTER MENU -->
+                    <div class="menu">
+                        <div class="menu-item">
+                            <div class="tile tile-centered">
+                                <div class="tile-icon">
+                                    <i class="icon-filter"></i>
+                                </div>
+                                <div class="tile-content">Filter</div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="menu-item mb-10">
+                            <form>
+                                <div class="form-group">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-input" v-model="filterName">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Rank (Smaller is higher)</label>
+                                    <input type="number" class="form-input" min="0" v-model.number="filterRank">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -180,3 +210,11 @@ export default {
     },
 };
 </script>
+
+<style>
+.guild-icon {
+    height: 84px;
+}
+</style>
+
+<style src="../styles/icons.css"></style>

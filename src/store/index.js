@@ -36,6 +36,7 @@ export default new Vuex.Store({
                 emblem: `http://eu.battle.net/wow/static/images/guild/tabards/emblem_${data.emblem.icon}.png`,
                 members: [],
             };
+
             data.members.forEach((element, i) => {
                 guild.members.push({
                     id: i, // for optimizing v-for loops
