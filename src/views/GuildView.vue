@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="col-3">
-                    <div class="menu mb-10" v-bind:style="{ backgroundColor: color }">
+                    <div class="menu mb-10">
                         <div class="text-center">
                             <h1 class="mb-0" v-text="averageItemLevel"></h1>
                             <h6>Average Item Level</h6>
