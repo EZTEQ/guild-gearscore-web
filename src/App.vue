@@ -38,6 +38,9 @@
     .mb-0 {
         margin-bottom: 0;
     }
+    .tooltip {
+        border-bottom: 1px dotted #c4c9d3;
+    }
 </style>
 <style src="spectre.css/dist/spectre.min.css" />
 <style src="spectre.css/dist/spectre-exp.min.css" />

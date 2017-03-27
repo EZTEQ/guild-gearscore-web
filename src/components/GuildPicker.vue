@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import normalizer from '../helper/realmnormalizer';
 
 export default {
     data() {
@@ -46,7 +47,9 @@ export default {
     methods: {
         navigateToGuild() {
             if (this.realm && this.guild) {
-                this.$router.push({ name: 'Guild', params: { realm: this.realm, guild: this.guild } });
+                const nRealm = normalizer.get(this.realm);
+                const nGuild = this.guild.toLowerCase();
+                this.$router.push({ name: 'Guild', params: { realm: nRealm, guild: nGuild } });
             }
         },
     },
