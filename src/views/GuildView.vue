@@ -155,6 +155,7 @@ export default {
 
         members() {
             const guildMembers = this.guild.members;
+            setTimeout(() => this.$Lazyload.lazyLoadHandler(), 0);
             return sortByProperty(guildMembers, this.sortBy, this.sortBySecond, this.sortReverse)
                 .filter(x => (x.name.toLowerCase().indexOf(this.filterName.toLowerCase()) !== -1), this)
                 .filter(x => (x.rank <= this.filterRank), this);
