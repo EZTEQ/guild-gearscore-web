@@ -30,10 +30,12 @@ export default new Vuex.Store({
     mutations: {
         /* eslint no-param-reassign: ["error", { "props": false }] */
         updateGuild(state, data) {
+            const iconMod = data.emblem.icon.toString().length === 1 ? '0' : '';
+
             const guild = {
                 name: data.name,
                 realm: data.realm,
-                emblem: `//eu.battle.net/wow/static/images/guild/tabards/emblem_${data.emblem.icon}.png`,
+                emblem: `//eu.battle.net/wow/static/images/guild/tabards/emblem_${iconMod + data.emblem.icon}.png`,
                 members: [],
             };
 
