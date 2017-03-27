@@ -2,7 +2,7 @@
     <div class="tile">
         <div class="tile-icon">
             <figure class="avatar avatar-lg">
-                <img :src="character.avatar">
+                <img v-lazy="character.avatar">
             </figure>
         </div>
         <div class="tile-content">
@@ -22,10 +22,6 @@
 <script>
 export default {
     props: ['name'],
-
-    data() {
-        return { avatarError: false };
-    },
 
     computed: {
         character() {
