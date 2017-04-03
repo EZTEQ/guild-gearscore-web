@@ -137,16 +137,6 @@ export default {
             return this.$store.state.guild;
         },
 
-        guildName() {
-            // return this.guild.name;
-        },
-
-        guildNameInitials() {
-            let initials = this.guild.name.match(/\b\w/g) || [];
-            initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
-            return initials;
-        },
-
         members() {
             const guildMembers = this.guild.members;
             setTimeout(() => this.$Lazyload.lazyLoadHandler(), 0);
@@ -203,7 +193,7 @@ export default {
             let avg = 0;
 
             top20.forEach(element => (avg += element.averageItemLevelEquipped));
-            avg = Math.round(avg / top20.length);
+            avg = Math.round((avg / top20.length) * 10) / 10;
             return (typeof avg === 'number' && !isNaN(avg)) ? avg : 0;
         },
     },
