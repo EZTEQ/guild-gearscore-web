@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import normalizer from '../helper/realmnormalizer';
 
-const endpoint = '/api';
+const endpoint = 'https://api.guildgearscore.cf';
 
 export default {
     getGuild(realm, name) {
